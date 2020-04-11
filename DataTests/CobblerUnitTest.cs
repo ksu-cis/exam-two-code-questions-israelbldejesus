@@ -121,6 +121,7 @@ namespace ExamTwoCodeQuestions.DataTests
             [Fact]
         public void SpecialInstructionsShouldImplementINotify()
         {
+            
             var si = new Cobbler();
             Assert.PropertyChanged(si, "SpecialInstructions", () =>
             {
