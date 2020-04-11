@@ -1,14 +1,24 @@
-﻿using System;
+﻿/*
+ * Author: Nathan Bean
+ * Edited By: Israel B. Lopez De Jesus
+ */
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ExamTwoCodeQuestions.Data
 {
-    public class Cobbler : IOrderItem
+    public class Cobbler : IOrderItem, INotifyPropertyChanged
     {
         /// <summary>
         /// The fruit used in the cobbler
         /// </summary>
         public FruitFilling Fruit { get; set; }
+
+        /// <summary>
+        /// This event will be invoked when a property relating to the order is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// If the cobbler is served with ice cream
@@ -37,6 +47,17 @@ namespace ExamTwoCodeQuestions.Data
                 if(WithIceCream) { return new List<string>(); }
                 else { return new List<string>() { "Hold Ice Cream" }; }
             }
+        }
+
+        /// <summary>
+        /// Invoke all events to ensure you don't miss anything
+        /// </summary>
+        public void InvokePropertyChanged()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Fruit"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("WithIceCream"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
         }
     }
 }
