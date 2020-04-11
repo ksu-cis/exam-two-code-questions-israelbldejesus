@@ -50,13 +50,12 @@ namespace ExamTwoCodeQuestions.Data
         }
 
         /// <summary>
-        /// Invoke all events to ensure you don't miss anything
+        /// Invoke all events to ensure I don't miss anything
         /// </summary>
         public void InvokePropertyChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Fruit"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("WithIceCream"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
         }
     }

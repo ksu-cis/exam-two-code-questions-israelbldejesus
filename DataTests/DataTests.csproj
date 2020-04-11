@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -19,6 +19,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\PointOfSale\PointOfSale.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CashRegister">
+      <HintPath>..\..\mvvm-data-binding-israelbldejesus\MVVMDataBinding\CashRegister.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

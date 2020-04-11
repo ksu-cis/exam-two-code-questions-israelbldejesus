@@ -1,6 +1,9 @@
 using System;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
+using System.ComponentModel;
+using System.Collections.Generic;
+
 
 namespace ExamTwoCodeQuestions.DataTests
 {
@@ -71,6 +74,58 @@ namespace ExamTwoCodeQuestions.DataTests
         {
             var cobbler = new Cobbler();
             Assert.IsAssignableFrom<IOrderItem>(cobbler);
+        }
+
+        /// <summary>
+        /// Check that INotify gets implemented properly.
+        /// </summary>
+        [Fact]
+        public void CobblerShouldImplementINotify()
+        {
+            var cobb = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(cobb);
+        }
+
+        /// <summary>
+        /// Check that INotify gets implemented properly.
+        /// </summary>
+        [Fact]
+        public void FruitShouldImplementINotify()
+        {
+            var fruit = new Cobbler();
+            fruit.Fruit = FruitFilling.Cherry;
+            //fruit.Fruit = FruitFilling.Blueberry;
+            Assert.PropertyChanged(fruit, "Fruit", () => {
+                fruit.Fruit = FruitFilling.Peach;
+                
+            });
+        }
+
+        /// <summary>
+        /// Check that INotify gets implemented properly.
+        /// </summary>
+        [Fact]
+        public void WithIceCreamShouldImplementINotify()
+        {
+            var cream = new Cobbler();
+            Assert.PropertyChanged(cream, "WithIceCream", () => {
+                cream.WithIceCream = false;
+            });
+
+            //Assert.PropertyChanged(cream, "WithIceCream", new List<string>() { "Hold Ice Cream" }); ;
+            }
+
+            /// <summary>
+            /// Check that INotify gets implemented properly.
+            /// </summary>
+            [Fact]
+        public void SpecialInstructionsShouldImplementINotify()
+        {
+            var si = new Cobbler();
+            Assert.PropertyChanged(si, "SpecialInstructions", () =>
+            {
+                si.SpecialInstructions.Equals(new List<string>());
+            });
         }
     }
 }
